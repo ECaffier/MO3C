@@ -1,0 +1,35 @@
+
+<footer>
+  <section class="footer">
+    <article>
+      <figure>
+          <img src="../img/logo-mini.png" alt="Logo MO3C">
+      </figure>
+    </article>
+    <address >
+      <p>
+        416 Rte d'Angleterre
+      </p>
+      <p>
+        76190 Saint-Martin-de-l'If
+      </p>
+      <p>
+        mocaffier@caffier.com
+      </p>
+      <p>
+        09 71 20 02 24
+      </p>
+    </address>
+    <article class="footerLink">
+      <ul>
+        <li>Copyright © 2024 MO3C</li>
+        <li><a href="/mentions">Mentions légales </a></li>
+        {% if app.user %}
+          <li><a href="/logout">Déconnexion</a></li>
+        {% else %}
+          <li><a href="/login">Se connecter</a></li>
+        {% endif %}
+      </ul>
+    </article>
+  </section>
+</footer>

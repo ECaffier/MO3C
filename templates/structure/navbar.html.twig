@@ -1,0 +1,38 @@
+{% if page is not defined %}
+  {% set page = "" %}
+{% endif %}
+{% if page is not same as "home" %}
+  <nav class="navbar">
+{% else %}
+  <nav class="navbarHome">
+{% endif %}
+    <a href="/"><img class="logo" src="../img/logo-mini.png" alt="Logo MO3C"></a>
+    <div class="navContainer">
+      <div id="burger"></div>
+      <ul>
+        {% if page is not same as "home" %}
+            <li><a href="/">Accueil</a></li>
+        {% endif %}
+        {% if page is not same as "services" %}
+          <li><a href="{{ path('app_home') }}#services">Services</a></li>
+        {% endif %}
+        {% if page is not same as "blog" %}
+          <li><a href="/blogpost">Blog</a></li>
+        {% endif %}
+        {% if (app.user) and (page is not same as "blogpostWriter") %}
+          <li><a href="/blogpost/writer">Edition post</a></li>
+        {% endif %}
+        {% if page is not same as "contact" %}
+          <li><a href="/contact">Contact</a></li>
+        {% endif %}
+        {% if app.user %}
+          <li><a href="/logout">Déconnexion</a></li>
+        {% else %}
+          <li><a href="/login">Se connecter</a></li>
+        {% endif %}
+        {% if (not app.user) and (page is not same as "registration") %}
+          <li><a href="/registration">S'inscrire</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>

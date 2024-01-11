@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/registration.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="registrationHeader"></section>
+    <section class="defaultForm registrationForm">
+        <h1>Inscription</h1>
+        {% form_theme form 'form/form_theme.html.twig' %}
+        {{ form(form) }}
+    </section>
+{% endblock %}

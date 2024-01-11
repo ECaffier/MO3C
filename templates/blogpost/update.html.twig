@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update post{% endblock %}
+
+{% block body %}
+  <div class="banner"></div>
+  <section class="container">
+    <article class="successMessage">
+      {% for message in app.flashes('success') %}
+        <p>{{message}}</p>
+      {% endfor %}
+    </article>
+    <h2>Edition du post : </h2>
+    <article>
+      {{ form(form) }}
+    </article>
+    <a class="crudButton" href="{{ path('app_blogpost_writer') }}">&#x2B05; Revenir à la liste des posts</a>
+  </section>
+{% endblock %}

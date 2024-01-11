@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+    <div class="banner"></div>
+    <section class="container"> 
+        <h2>Postes sur le blog</h2>
+        <h3>Nos derniers posts : </h3>
+        <div class="lastPosts">
+            {% for lastPost in lastPosts %}
+            <article class="blogPost">
+                <p>{{ lastPost.title }}</p>
+                {% if lastPost.author %}
+                    <p>De : {{ lastPost.author.firstname }} {{ lastPost.author.lastname }}</p>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        <h3>Tous nos posts : </h3>
+        {% for blogpost in blogposts %}
+            <article class="blogPost">
+                <h3>{{ blogpost.title }}</h3>
+                <p>{{ blogpost.content }}</p>
+                {% if blogpost.author %}
+                    <p>De : {{ blogpost.author.firstname }} {{ blogpost.author.lastname }}</p>
+                {% endif %}
+                {% if blogpost.author %}
+                    <p>Post écrit par : {{ blogpost.author.firstname }} {{ blogpost.author.lastname }}</p>
+                {% endif %}
+                <p>Posté le : {{ blogpost.createdAt | date('d/m/Y') }}</p>
+            </article>
+        {% endfor %}
+        <div class="navigation">
+            {{ knp_pagination_render(blogposts) }}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+    <div class="banner"></div>
+    <section class="container"> 
+        <h2>Gestion des posts</h2>
+        <article>
+            <a class="crudButton" href="{{ path('app_blogpost_new') }}">Créer un post</a>
+        </article>
+        <article class="successMessage">
+            {% for message in app.flashes('success') %}
+                <p>{{message}}</p>
+            {% endfor %}
+        </article>
+        {% for blogpost in blogposts %}
+            <article class="blogPost">
+                <h3>{{ blogpost.title }}</h3>
+                <p>{{ blogpost.content }}</p>
+                {% if blogpost.author %}
+                    <p>Post écrit par : {{ blogpost.author.firstname }} {{ blogpost.author.lastname }}</p>
+                {% endif %}
+                <p>Posté le : {{ blogpost.createdAt | date('d/m/Y') }}</p>
+                <div class="crudContainer">
+                    <a class="crudButton" href="{{ path('app_blogpost_update', {'id': blogpost.id})}}">Modifier le poste</a>
+                    <a class="crudButton crudButtonDelete" href="{{ path('app_blogpost_delete', {'id': blogpost.id})}}">Supprimer le poste</a>
+                </div>
+            </article>
+        {% endfor %}
+        <div class="navigation paginationBlog">
+            {{ knp_pagination_render(blogposts) }}
+        </div>
+    </section>
+{% endblock %}
